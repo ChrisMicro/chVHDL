@@ -44,9 +44,10 @@ ARCHITECTURE logic OF blinker IS
 	constant ROMLENGTH		: integer 	:= rom'length;
 	signal	address			: integer range 0 to ROMLENGTH := 0 ;
 	
-	constant FREQUENCY_HZ	: integer := 4; -- Hz
-	signal	prescaler		: integer range 0 to 53200000/(2*FREQUENCY_HZ)-1 := 0; 
-	signal	PRESCALERMAX 	: integer range 0 to 53200000/(2*FREQUENCY_HZ)-1 := 53200000/(2*FREQUENCY_HZ)-1 ; --  bei 53.2MHz fosc
+	constant SYSCLK_HZ		: integer := 53200000;
+	constant FREQUENCY_HZ	: integer := 4; 
+	signal	prescaler		: integer range 0 to SYSCLK_HZ/(2*FREQUENCY_HZ)-1 := 0; 
+	signal	PRESCALERMAX 	: integer range 0 to SYSCLK_HZ/(2*FREQUENCY_HZ)-1 := SYSCLK_HZ/(2*FREQUENCY_HZ)-1 ; 
 	
 			
 BEGIN
