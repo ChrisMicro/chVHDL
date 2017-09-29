@@ -22,7 +22,7 @@ USE ieee.numeric_std.all; -- needed for the '+' operator for SIGNED and UNSIGNED
 ENTITY blinker IS
 	PORT( 
 			clk		: in  STD_LOGIC;
-			leds	: out unsigned ( 7 downto 0 )
+			leds	: out std_logic_vector ( 7 downto 0 )
 		);
 END blinker;
 
@@ -60,7 +60,7 @@ BEGIN
 				prescaler <= 0;
 				if( address < ROMLENGTH ) then
 					address <= address +1;
-					leds <= rom(address);
+					leds <= std_logic_vector(unsigned(rom(address)));
 				else
 					address <= 0;
 					end if;
@@ -94,7 +94,7 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity top_MACHX02 is
 	Port	(  
-				leds	: out unsigned ( 7 downto 0 )
+				leds	: out std_logic_vector ( 7 downto 0 )
 			); 
 end entity;
 
@@ -117,12 +117,12 @@ architecture Behaviour of top_MACHX02 is
 	component blinker
 		port( 
 				clk : in std_logic;
-				leds : out unsigned ( 7 downto 0 )
+				leds : out std_logic_vector ( 7 downto 0 )
 			 );
 	end component;
 	
-   signal   system_clk		: STD_LOGIC;
-   signal system_leds : unsigned ( 7 downto 0 );
+   signal   system_clk : STD_LOGIC;
+   signal system_leds  : std_logic_vector ( 7 downto 0 );
    
 begin
 	--  connect lattice internal oscillator OSCH primitive
