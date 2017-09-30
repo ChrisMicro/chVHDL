@@ -24,12 +24,12 @@ end entity squareWave;
 
 architecture logic OF squareWave IS
 	
-	constant SYSCLK_HZ		: integer := 53200000;
-	constant FREQUENCY_HZ	: integer := 440; 
-	signal	prescaler		: integer range 0 to SYSCLK_HZ/(2*FREQUENCY_HZ)-1 := 0; 
-	signal	PRESCALERMAX 	: integer range 0 to SYSCLK_HZ/(2*FREQUENCY_HZ)-1 := SYSCLK_HZ/(2*FREQUENCY_HZ)-1 ; 
+	constant	SYSCLK_HZ		: integer := 53200000;
+	constant	FREQUENCY_HZ	: integer := 440; 
+	signal		prescaler		: integer range 0 to SYSCLK_HZ/(2*FREQUENCY_HZ)-1 := 0; 
+	constant	PRESCALERMAX 	: integer range 0 to SYSCLK_HZ/(2*FREQUENCY_HZ)-1 := SYSCLK_HZ/(2*FREQUENCY_HZ)-1 ; 
 	
-	signal speaker_bit		: std_logic := '0';
+	signal		speaker_bit		: std_logic := '0';
 
 begin
 	
@@ -115,7 +115,7 @@ begin
 	blinker0: squareWave	
 		port map	( clk => clk_signal, speaker_signal => speaker_signal ); 
 	
-	led_pins( 7 downto 1 )	<=  not "0000000"; -- leds off, leds are active low
+	led_pins( 7 downto 1 )	<= not "0000000"; -- leds off, leds are active low
 	led_pins( 0 )			<= speaker_signal; -- just to show some reaction
 	speaker_pin				<= speaker_signal;
 
